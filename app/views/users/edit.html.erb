@@ -1,0 +1,14 @@
+<% @user.errors.full_messages.each do |attribute, message| %>
+	<p><%= attribute %> <%= message %></p>
+<% end %>
+
+<%= form_for @user do |f| %>
+	<%= f.text_field :first_name %>
+	<%= f.text_field :last_name %>
+	<%= f.email_field :email %>
+	<%= f.password_field :password %>
+	<%= f.password_field :password_confirmation %>
+	<%= f.select :role, User::USER_ROLES %>
+
+	<%= f.submit %>
+<% end %>

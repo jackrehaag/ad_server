@@ -1,3 +1,7 @@
+<% @advertiser.errors.full_messages.each do |attribute, message| %>
+	<p><%= attribute %> <%= message %></p>
+<% end %>
+
 <%= form_for @advertiser do |f| %>
 	<%= f.label :company %>
 	<%= f.text_field :company %>

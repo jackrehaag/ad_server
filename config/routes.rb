@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :advertisers
+  resources :users, except: [:new, :create]
 end
