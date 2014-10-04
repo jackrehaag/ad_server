@@ -1,5 +1,5 @@
 Given(/^I visit the user signup path$/) do
-  visit user_sign_up_path
+  visit new_user_registration_path
 end
 
 Given(/^I fill in the user signup form$/) do
@@ -19,7 +19,7 @@ Given(/^I have a user account$/) do
 end
 
 Given(/^I visit the user sign in path$/) do
-  visit user_sign_in_path
+  visit new_user_session_path
 end
 
 Given(/^I fill in the user sign in form$/) do
@@ -28,6 +28,7 @@ Given(/^I fill in the user sign in form$/) do
 end
 
 Given(/^I am signed in$/) do
+  step 'I have a user account'
   step 'I visit the user sign in path'
   step 'I fill in the user sign in form'
   step 'I click the "Sign in" button'

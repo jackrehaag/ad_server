@@ -15,5 +15,5 @@ Then I should see "Signed in successfully"
 
 Scenario: User sign out
 Given I am signed in
-And I click the "Sign out" button
+And I click the "Sign out" link
 Then I should see "Signed out successfully"
