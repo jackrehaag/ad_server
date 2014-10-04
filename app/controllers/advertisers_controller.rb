@@ -20,6 +20,14 @@ class AdvertisersController < ApplicationController
 		@advertiser = Advertiser.find(params[:id])
 	end
 
+	def index
+		if current_user.role == 'Administrator'
+			@advertisers = Advertiser.all
+		else
+			@advertisers = current_user.advertisers
+		end
+	end
+
 	protected
 
 	def advertiser_params

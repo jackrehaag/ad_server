@@ -1,0 +1,29 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Company</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>Postcode</th>
+			<th>Country</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @advertisers.each do |advertiser| %>
+			<tr>
+				<td><%= advertiser.company %></td>
+				<td><%= advertiser.first_name %></td>
+				<td><%= advertiser.last_name %></td>
+				<td><%= advertiser.email %></td>
+				<td><%= advertiser.address %></td>
+				<td><%= advertiser.city %></td>
+				<td><%= advertiser.postcode %></td>
+				<td><%= advertiser.country %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
