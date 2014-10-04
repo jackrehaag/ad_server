@@ -11,14 +11,15 @@ Given(/^I visit the new advertisers path$/) do
 end
 
 Given(/^I fill in the new advertiser form$/) do
-  fill_in :company, with: 'Test Company'
-  fill_in :first_name, with: 'Test'
-  fill_in :last_name, with: 'Advertiser'
-  fill_in :email, with: 'testing@example.com'
-  fill_in :address, with: '1 street way'
-  fill_in :city, with: 'London'
-  fill_in :postcode, with: 'SW1A 1AA'
-  select 'United Kingdom', from: :country
+  fill_in 'advertiser_company', with: 'Test Company'
+  fill_in 'advertiser_first_name', with: 'Test'
+  fill_in 'advertiser_last_name', with: 'Advertiser'
+  fill_in 'advertiser_email', with: 'testing@example.com'
+  fill_in 'advertiser_address', with: '1 street way'
+  fill_in 'advertiser_city', with: 'London'
+  fill_in 'advertiser_postcode', with: 'SW1A 1AA'
+  # select 'United Kingdom', from: 'advertiser_country'
+  find('#advertiser_country').find(:xpath, 'option[1]').select_option
 end
 
 Then(/^My advertiser should be created$/) do

@@ -4,9 +4,9 @@ Scenario: Creating an advertiser
 Given I am signed in
 And I visit the new advertisers path
 And I fill in the new advertiser form
-And I click the "Create advertiser" button
+And I click the "Create Advertiser" button
 Then My advertiser should be created
-And I should see "Advertisement successfully created"
+And I should see "Advertiser successfully created"
 
 Scenario: Listing advertisers
 Given I am signed in

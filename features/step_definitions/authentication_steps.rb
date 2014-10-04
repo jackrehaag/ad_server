@@ -15,11 +15,11 @@ Then(/^My user account should be created$/) do
 end
 
 Given(/^I have a user account$/) do
-  Fabricate(:user)
+  @user = Fabricate(:user)
 end
 
 Given(/^I have an administrator user account$/) do
-  Fabricate(:administrator_user)
+  @administrator_user = Fabricate(:administrator_user)
 end
 
 Given(/^I visit the user sign in path$/) do
@@ -28,6 +28,11 @@ end
 
 Given(/^I fill in the user sign in form$/) do
   fill_in 'user_email', with: 'test@example.com'
+  fill_in 'user_password', with: 'test_password'
+end
+
+Given(/^I fill in the user sign in form as an administrator$/) do
+  fill_in 'user_email', with: 'administrator@example.com'
   fill_in 'user_password', with: 'test_password'
 end
 
