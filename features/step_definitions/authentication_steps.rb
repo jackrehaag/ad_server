@@ -18,6 +18,10 @@ Given(/^I have a user account$/) do
   Fabricate(:user)
 end
 
+Given(/^I have an administrator user account$/) do
+  Fabricate(:administrator_user)
+end
+
 Given(/^I visit the user sign in path$/) do
   visit new_user_session_path
 end
@@ -27,10 +31,22 @@ Given(/^I fill in the user sign in form$/) do
   fill_in 'user_password', with: 'test_password'
 end
 
+Given(/^I am signed in as an administrator$/) do
+  step 'I have an administrator user account'
+  step 'I visit the user sign in path'
+  step 'I fill in the user sign in form as an administrator'
+  step 'I click the "Sign in" button'
+  step 'I should see "Signed in successfully"'
+end
+
 Given(/^I am signed in$/) do
   step 'I have a user account'
   step 'I visit the user sign in path'
   step 'I fill in the user sign in form'
   step 'I click the "Sign in" button'
   step 'I should see "Signed in successfully"'
+end
+
+Given(/^There is a user$/) do
+  step 'I have a user account'
 end
