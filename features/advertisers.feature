@@ -12,7 +12,7 @@ Scenario: Listing advertisers
 Given I am signed in
 And I have an advertiser
 And I visit the advertisers path
-Then I should see "Test advertiser"
+Then I should see "Test Advertiser"
 
 Scenario: Deleting advertisers
 Given I am signed in as an administrator

@@ -1,12 +1,13 @@
 class AdvertisersController < ApplicationController
 	before_filter :authenticate_user!
+	load_and_authorize_resource
 
 	def new
-		@advertiser = Advertiser.new
+		@advertiser = current_user.advertisers.new
 	end
 
 	def create
-		@advertiser = Advertiser.new(advertiser_params)
+		@advertiser = current_user.advertisers.new(advertiser_params)
 		if @advertiser.save
 			flash[:success] = "Advertiser successfully created."
 			redirect_to advertiser_path(@advertiser)
