@@ -8,11 +8,6 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-		if user_params[:password].blank?
-      user_update_method = :update_without_password
-    else
-    	user_update_method = :update_attributes
-    end
 		if @user.send(user_update_method, user_params)
 			flash[:success] = 'User successfully updated.'
 			redirect_to users_path
@@ -26,8 +21,26 @@ class UsersController < ApplicationController
 		@users = User.all
 	end
 
+	def destroy
+		@user = User.find(params[:id])
+		if @user.destroy
+			flash[:notice] = 'User deleted.'
+		else
+			flash[:error] = 'There was a problem deleting this user.'
+		end
+		redirect_to users_path
+	end
+
 	protected
 	def user_params
 		params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
+	end
+
+	def user_update_method
+		if user_params[:password].blank?
+      :update_without_password
+    else
+    	:update_attributes
+    end
 	end
 end

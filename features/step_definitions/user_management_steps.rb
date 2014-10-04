@@ -32,3 +32,9 @@ Given(/^I fill in the users password fields with an incorrect confirmation$/) do
   fill_in 'user_password', with: 'new_password'
   fill_in 'user_password_confirmation', with: 'not_the_new_password'
 end
+
+Given(/^I delete the other user$/) do
+  within(:css, "tr#user-#{@user.id}") do
+  	click_link 'Delete'
+  end
+end

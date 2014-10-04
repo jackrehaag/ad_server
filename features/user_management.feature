@@ -34,3 +34,10 @@ Given There is a user
 And I am signed in as an administrator
 And I visit the users path
 Then I should see the user listed
+
+Scenario: Deleting users
+Given There is a user
+And I am signed in as an administrator
+And I visit the users path
+And I delete the other user
+Then There should be 1 users
