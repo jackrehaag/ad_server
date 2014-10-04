@@ -29,6 +29,16 @@ class AdvertisersController < ApplicationController
 		end
 	end
 
+	def destroy
+		@advertiser = Advertiser.find(params[:id])
+		if @advertiser.destroy
+			flash[:notice] = 'Advertiser deleted'
+		else
+			flash[:error] = 'There was a problem deleting this advertiser'
+		end
+		redirect_to advertisers_path
+	end
+
 	protected
 
 	def advertiser_params

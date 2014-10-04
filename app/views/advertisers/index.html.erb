@@ -9,6 +9,7 @@
 			<th>City</th>
 			<th>Postcode</th>
 			<th>Country</th>
+			<th></th>
 		</tr>
 	</thead>
 
@@ -23,6 +24,11 @@
 				<td><%= advertiser.city %></td>
 				<td><%= advertiser.postcode %></td>
 				<td><%= advertiser.country %></td>
+				<td>
+					<% if can? :destroy, advertiser %>
+						<%= link_to 'Delete', advertiser_path(advertiser), method: :delete %>
+					<% end %>
+				</td>
 			</tr>
 		<% end %>
 	</tbody>

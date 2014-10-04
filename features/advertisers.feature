@@ -19,5 +19,5 @@ Given I am signed in as an administrator
 And There is a user
 And The user has an advertiser
 And I visit the advertisers path
-And I click the "delete" link
+And I click the "Delete" link
 Then There should be 0 advertisers

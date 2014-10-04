@@ -9,6 +9,7 @@ class Ability
 
     if user.role == 'User'
       can :manage, Advertiser
+      cannot :destroy, Advertiser
     end
   end
 end

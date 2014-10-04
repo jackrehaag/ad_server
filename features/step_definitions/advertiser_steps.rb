@@ -18,7 +18,6 @@ Given(/^I fill in the new advertiser form$/) do
   fill_in 'advertiser_address', with: '1 street way'
   fill_in 'advertiser_city', with: 'London'
   fill_in 'advertiser_postcode', with: 'SW1A 1AA'
-  # select 'United Kingdom', from: 'advertiser_country'
   find('#advertiser_country').find(:xpath, 'option[1]').select_option
 end
 
@@ -28,7 +27,7 @@ Then(/^My advertiser should be created$/) do
 end
 
 Then(/^There should be (\d+) advertisers$/) do |arg1|
-  expect(Advertiser.all.count).to eq(arg1)
+  expect(Advertiser.all.count).to eq(arg1.to_i)
 end
 
 Given(/^The user has an advertiser$/) do

@@ -4,10 +4,11 @@ Scenario: a user cannot see the delete link for advertisers
 Given I am signed in
 And I have an advertiser
 And I visit the advertisers path
-Then I should not see the advertiser delete link
+Then I should not see "Delete"
 
 Scenario: a administrator can see the delete link for advertisers
 Given I am signed in as an administrator
-And I have an advertiser
+And There is a user
+And The user has an advertiser
 And I visit the advertisers path
-Then I should see the advertiser delete link
+Then I should see "Delete"
