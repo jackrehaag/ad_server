@@ -26,7 +26,7 @@
 				<td><%= campaign.in_pause ? 'Yes' : 'No' %></td>
 				<td><%= campaign.start_date %></td>
 				<td><%= campaign.end_date %></td>
-				<td><%= link_to campaign.link %></td>
+				<td><%= link_to campaign.link, campaign.link %></td>
 				<td><%= campaign.country %></td>
 				<td><%= campaign.active? ? 'Yes' : 'No' %></td>
 				<td><%= image_tag campaign.creative.url(:thumb) %></td>
