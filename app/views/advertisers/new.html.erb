@@ -1,24 +1,52 @@
-<% @advertiser.errors.full_messages.each do |attribute, message| %>
-	<p><%= attribute %> <%= message %></p>
-<% end %>
+<div class="col-md-8">
+	<% @advertiser.errors.full_messages.each do |attribute, message| %>
+		<p class="text-danger"><%= attribute %> <%= message %></p>
+	<% end %>
 
-<%= form_for @advertiser do |f| %>
-	<%= f.label :company %>
-	<%= f.text_field :company %>
-	<%= f.label :first_name %>
-	<%= f.text_field :first_name %>
-	<%= f.label :last_name %>
-	<%= f.text_field :last_name %>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-	<%= f.label :address %>
-	<%= f.text_field :address %>
-	<%= f.label :city %>
-	<%= f.text_field :city %>
-	<%= f.label :postcode %>
-	<%= f.text_field :postcode %>
-	<%= f.label :country %>
-	<%= f.country_select :country, { priority_countries: ["GB", "FR"] }, { selected: "GB" } %>
+	<%= form_for @advertiser do |f| %>
+		<div class='form-group'>
+			<%= f.label :company %>
+			<%= f.text_field :company, class: 'form-control' %>
+		</div>
 
-	<%= f.submit %>
-<% end %>
+		<div class='form-group'>
+			<%= f.label :first_name %>
+			<%= f.text_field :first_name, class: 'form-control' %>
+		</div>
+
+		<div class='form-group'>
+			<%= f.label :last_name %>
+			<%= f.text_field :last_name, class: 'form-control' %>
+		</div>
+
+		<div class='form-group'>
+			<%= f.label :email %>
+			<%= f.text_field :email, class: 'form-control' %>
+		</div>
+
+		<div class='form-group'>
+			<%= f.label :address %>
+			<%= f.text_field :address, class: 'form-control' %>
+		</div>
+
+		<div class='form-group'>
+			<%= f.label :city %>
+			<%= f.text_field :city, class: 'form-control' %>
+		</div>
+
+		<div class='form-group'>
+			<%= f.label :postcode %>
+			<%= f.text_field :postcode, class: 'form-control' %>
+		</div>
+
+		<div class='form-group'>
+			<%= f.label :country %>
+			<%= f.country_select :country, { priority_countries: ["GB", "FR"] }, { selected: "GB", class: 'form-control' } %>
+		</div>
+
+
+		<div class="form-group">
+			<%= f.submit 'Create Advertiser', class: 'btn btn-success' %>
+		</div>
+	<% end %>
+</div>

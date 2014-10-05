@@ -1,7 +1,40 @@
-Company: <%= @advertiser.company %>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Advertiser Details
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+		  <dt>Company:</dt>
+		  <dd><%= @advertiser.company %></dd>
 
-<%= link_to 'Add campaign', new_advertiser_campaign_path(@advertiser), class: 'btn btn-success' %>
+			<dt>First Name:</dt>
+			<dd><%= @advertiser.first_name %></dd>
 
+			<dt>Last Name:</dt>
+			<dd><%= @advertiser.last_name %></dd>
+
+			<dt>Email:</dt>
+			<dd><%= @advertiser.email %></dd>
+
+			<dt>Address:</dt>
+			<dd><%= @advertiser.address %></dd>
+
+			<dt>City:</dt>
+			<dd><%= @advertiser.city %></dd>
+
+			<dt>Postcode:</dt>
+			<dd><%= @advertiser.postcode %></dd>
+			
+			<dt>Country:</dt>
+			<dd><%= @advertiser.country %></dd>
+		</dl>
+
+	</div>
+</div>
+
+<%= link_to 'Add campaign', new_advertiser_campaign_path(@advertiser), class: 'btn btn-success pull-right' %>
+
+<h2>Campaigns</h2>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -12,6 +45,7 @@ Company: <%= @advertiser.company %>
 			<th>End Date</th>
 			<th>Link</th>
 			<th>Country</th>
+			<th>Active</th>
 			<th>Creative</th>
 		</tr>
 	</thead>
@@ -26,6 +60,7 @@ Company: <%= @advertiser.company %>
 				<td><%= campaign.end_date %></td>
 				<td><%= link_to campaign.link %></td>
 				<td><%= campaign.country %></td>
+				<td><%= campaign.active? ? 'Yes' : 'No' %></td>
 				<td><%= image_tag campaign.creative.url(:thumb) %></td>
 			</tr>
 		<% end %>

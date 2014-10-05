@@ -1,32 +1,64 @@
+<h1>New Campaign</h1>
 <% @campaign.errors.full_messages.each do |attribute, message| %>
-	<p><%= attribute %> <%= message %></p>
+	<p class="text-danger"><%= attribute %> <%= message %></p>
 <% end %>
 
-<%= form_for @campaign, :url => advertiser_campaigns_path(@advertiser.id) do |f| %>
-	
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	
-	<%= f.label :budget %>
-	<%= f.text_field :budget %>
-	
-	<%= f.label :start_date %>
-	<%= f.date_select :start_date %>
-	
-	<%= f.label :end_date %>
-	<%= f.date_select :end_date %>
-	
-	<%= f.label :link %>
-	<%= f.text_field :link %>
-	
-	<%= f.label :country %>
-	<%= f.country_select :country, { priority_countries: ["GB", "FR"] }, { selected: "GB" } %>
-	
-	<%= f.label :creative %>
-	<%= f.file_field :creative %>
-	
-	<%= f.label :in_pause %>
-	<%= f.select :in_pause, options_for_select([['Yes', true], ['No', false]]) %>
+<div class="col-md-7">
+	<%= form_for @campaign, :url => advertiser_campaigns_path(@advertiser.id) do |f| %>	
+		<div class="form-group">
+			<%= f.label :name %>
+			<%= f.text_field :name, class: 'form-control' %>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :budget %>
 
-	<%= f.submit %>
-<% end %>
+			<div class="input-group">
+			  <span class="input-group-addon">$</span>
+			  <%= f.text_field :budget, class: 'form-control' %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :start_date %>
+			<div>
+				<%= f.date_select :start_date, class: 'form-control' %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :end_date %>
+			<div>
+				<%= f.date_select :end_date %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :link %>
+			<%= f.text_field :link, class: 'form-control' %>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :country %>
+			<div>
+				<%= f.country_select :country, { priority_countries: ["GB", "FR"] }, { selected: "GB", class: 'form-control' } %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :creative %>
+			<%= f.file_field :creative, {class: 'form-control'} %>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :in_pause %>
+			<div>
+				<%= f.select :in_pause, options_for_select([['Yes', true], ['No', false]]), {}, class: 'form-control' %>
+			</div>
+		</div>
+		<div class="form-group">
+			<%= f.submit 'Create Campaign', class: 'btn btn-success' %>
+		</div>
+
+	<% end %>
+</div>

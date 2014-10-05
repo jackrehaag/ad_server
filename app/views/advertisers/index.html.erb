@@ -1,3 +1,5 @@
+<h1>Advertisers</h1>
+<%= link_to 'Add Advertiser', new_advertiser_path, class: 'btn btn-success pull-right' %>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -25,8 +27,11 @@
 				<td><%= advertiser.postcode %></td>
 				<td><%= advertiser.country %></td>
 				<td>
+					<% if can? :read, advertiser %>
+						<%= link_to 'View', advertiser_path(advertiser) %>
+					<% end %>
 					<% if can? :destroy, advertiser %>
-						<%= link_to 'Delete', advertiser_path(advertiser), method: :delete %>
+						| <%= link_to 'Delete', advertiser_path(advertiser), method: :delete %>
 					<% end %>
 				</td>
 			</tr>
