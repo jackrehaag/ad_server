@@ -3,7 +3,7 @@ Given(/^I fill in the new campaign form$/) do
   fill_in 'campaign_budget', with: '10000'
   select '1/1/2015', from: 'campaign_start_date'
   select '31/12/2015', from: 'campaign_end_date'
-  fill_in 'campaign_link', with: 'http://github.com'
+  fill_in 'campaign_link', with: 'http://rubyonrails.org/'
   find('#campaign_country').find(:xpath, 'option[1]').select_option
   attach_file('campaign_creative', '/spec/fixtures/images/test-image.jpg')
 end
