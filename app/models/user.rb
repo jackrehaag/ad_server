@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
 	validates_presence_of :first_name, :last_name, :role
 	validates :role, inclusion: USER_ROLES
 
-	has_many :advertisers
+	has_many :advertisers, dependent: :destroy
 	has_many :campaigns, through: :advertisers
 end
