@@ -47,7 +47,7 @@
 		<% if current_user.role == 'Administrator' %>
 			<div class='form-group'>
 				<%= f.label :user_id, 'User' %>
-				<%= f.collection_select(:user_id, User.all, :id, :email) %>
+				<%= f.collection_select(:user_id, User.all, :id, :email, {},class: 'form-control') %>
 			</div>
 		<% end %>
 
