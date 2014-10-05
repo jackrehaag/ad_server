@@ -1,9 +1,13 @@
 Given(/^I have an advertiser$/) do
-  Fabricate(:advertiser, user_id: @user.id)
+  @advertiser = Fabricate(:advertiser, user_id: @user.id)
 end
 
 Given(/^I visit the advertisers path$/) do
   visit advertisers_path
+end
+
+Given(/^I visit the advertiser path$/) do
+  visit advertiser_path(@advertiser)
 end
 
 Given(/^I visit the new advertisers path$/) do
