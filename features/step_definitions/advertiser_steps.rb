@@ -37,3 +37,11 @@ end
 Given(/^The user has an advertiser$/) do
   step 'I have an advertiser'
 end
+
+Given(/^I select the advertisers user$/) do
+  select 'test@example.com', from: 'advertiser_user_id'
+end
+
+Then(/^The user should have (\d+) advertisers$/) do |arg1|
+  expect(@user.advertisers.count).to eq(arg1.to_i)
+end

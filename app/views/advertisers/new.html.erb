@@ -44,6 +44,13 @@
 			<%= f.country_select :country, { priority_countries: ["GB", "FR"] }, { selected: "GB", class: 'form-control' } %>
 		</div>
 
+		<% if current_user.role == 'Administrator' %>
+			<div class='form-group'>
+				<%= f.label :user_id, 'User' %>
+				<%= f.collection_select(:user_id, User.all, :id, :email) %>
+			</div>
+		<% end %>
+
 
 		<div class="form-group">
 			<%= f.submit 'Create Advertiser', class: 'btn btn-success' %>

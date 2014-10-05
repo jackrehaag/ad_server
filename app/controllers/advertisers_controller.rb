@@ -3,11 +3,15 @@ class AdvertisersController < ApplicationController
 	load_and_authorize_resource
 
 	def new
-		@advertiser = current_user.advertisers.new
+		@advertiser = Advertiser.new
 	end
 
 	def create
-		@advertiser = current_user.advertisers.new(advertiser_params)
+		if current_user.role == "Administrator"
+			@advertiser = Advertiser.new(advertiser_params)
+		else
+			@advertiser = current_user.advertisers.new(advertiser_params)
+		end
 		if @advertiser.save
 			flash[:success] = "Advertiser successfully created."
 			redirect_to advertiser_path(@advertiser)
@@ -42,6 +46,6 @@ class AdvertisersController < ApplicationController
 	protected
 
 	def advertiser_params
-		params.require(:advertiser).permit(:company, :first_name, :last_name, :email, :address, :city, :postcode, :country)
+		params.require(:advertiser).permit(:company, :first_name, :last_name, :email, :address, :city, :postcode, :country, :user_id)
 	end
 end
