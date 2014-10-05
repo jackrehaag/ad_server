@@ -16,6 +16,14 @@ class CampaignsController < ApplicationController
 		end
 	end
 
+	def index
+		if current_user.role == 'Administrator'
+			@campaigns = Campaign.all
+		else
+			@campaigns = current_user.campaigns
+		end
+	end
+
 	protected
 	def campaign_params
 		params.require(:campaign).permit(:name, :budget, :start_date, :end_date, :in_pause, :link, :country, :creative, :advertiser_id)

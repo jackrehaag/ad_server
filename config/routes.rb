@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :advertisers do
-  	resources :campaigns
+  	resources :campaigns, except: :index
   end
+
   resources :users, except: [:new, :create]
+  resources :campaigns, only: :index
 
   namespace :api do
   	get 'campaigns', to: 'campaigns#index'

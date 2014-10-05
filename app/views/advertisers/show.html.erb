@@ -35,34 +35,4 @@
 <%= link_to 'Add campaign', new_advertiser_campaign_path(@advertiser), class: 'btn btn-success pull-right' %>
 
 <h2>Campaigns</h2>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Budget</th>
-			<th>In Pause</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-			<th>Link</th>
-			<th>Country</th>
-			<th>Active</th>
-			<th>Creative</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @advertiser.campaigns.each do |campaign| %>
-			<tr id="campaign-<%= campaign.id %>">
-				<td><%= campaign.name %></td>
-				<td><%= campaign.budget %></td>
-				<td><%= campaign.in_pause %></td>
-				<td><%= campaign.start_date %></td>
-				<td><%= campaign.end_date %></td>
-				<td><%= link_to campaign.link %></td>
-				<td><%= campaign.country %></td>
-				<td><%= campaign.active? ? 'Yes' : 'No' %></td>
-				<td><%= image_tag campaign.creative.url(:thumb) %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<%= render partial: 'campaigns/table', locals: { campaigns: @advertiser.campaigns } %>

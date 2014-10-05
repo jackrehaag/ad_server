@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
 	validates :role, inclusion: USER_ROLES
 
 	has_many :advertisers
+	has_many :campaigns, through: :advertisers
 end

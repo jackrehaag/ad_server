@@ -20,3 +20,7 @@ end
 Given(/^I have a campaign$/) do
   Fabricate(:campaign, advertiser_id: @advertiser.id)
 end
+
+Given(/^I visit the campaigns path$/) do
+  visit campaigns_path
+end

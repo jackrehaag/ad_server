@@ -16,3 +16,10 @@ And I have an advertiser
 And I have a campaign
 And I visit the advertiser path
 Then I should see "Test Campaign"
+
+Scenario: Listing all campaigns
+Given I am signed in
+And I have an advertiser
+And I have a campaign
+And I visit the campaigns path
+Then I should see "Test Campaign"
