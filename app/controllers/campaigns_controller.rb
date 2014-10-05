@@ -9,7 +9,7 @@ class CampaignsController < ApplicationController
 		@campaign = @advertiser.campaigns.new(campaign_params)
 		if @campaign.save
 			flash[:success] = "Campaign successfully created."
-			redirect_to advertiser_campaign_path(@advertiser, @campaign)
+			redirect_to advertiser_path(@advertiser)
 		else
 			flash[:error] = "There was a problem creating this campaign."
 			render :new
