@@ -9,23 +9,23 @@ RSpec.describe Campaign, :type => :model do
 		expect { Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today, end_date: Date.today - 1.days) }.to raise_error
 	end
 
-	it "returns active campaigns" do 
+	it "returns true for active campaigns" do 
 		@campaign = Fabricate(:campaign, advertiser: @advertiser)
-		expect(Campaign.active).to include(@campaign)
+		expect(@campaign.active?).to eq(true)
 	end
 
   it "does not include paused campaigns as active" do 
   	@campaign = Fabricate(:campaign, advertiser: @advertiser, in_pause: true)
-  	expect(Campaign.active).to not_include(@campaign)
+  	expect(@campaign.active?).to eq(false)
   end
 
   it "does not include campaigns with a forthcoming start date as active" do 
   	@campaign = Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today + 1.day)
-  	expect(Campaign.active).to not_include(@campaign)
+  	expect(@campaign.active?).to eq(false)
   end
 
   it "does not include campaigns with a foregone end date as active" do 
   	@campaign = Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today - 2.months, end_date: Date.today - 1.months)
-  	expect(Campaign.active).to not_include(@campaign)
+  	expect(@campaign.active?).to eq(false)
   end
 end
