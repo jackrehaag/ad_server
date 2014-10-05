@@ -1,0 +1,32 @@
+<% @campaign.errors.full_messages.each do |attribute, message| %>
+	<p><%= attribute %> <%= message %></p>
+<% end %>
+
+<%= form_for @campaign, :url => advertiser_campaigns_path(@advertiser.id) do |f| %>
+	
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	
+	<%= f.label :budget %>
+	<%= f.text_field :budget %>
+	
+	<%= f.label :start_date %>
+	<%= f.date_select :start_date %>
+	
+	<%= f.label :end_date %>
+	<%= f.date_select :end_date %>
+	
+	<%= f.label :link %>
+	<%= f.text_field :link %>
+	
+	<%= f.label :country %>
+	<%= f.country_select :country, { priority_countries: ["GB", "FR"] }, { selected: "GB" } %>
+	
+	<%= f.label :creative %>
+	<%= f.file_field :creative %>
+	
+	<%= f.label :in_pause %>
+	<%= f.select :in_pause, options_for_select([['Yes', true], ['No', false]]) %>
+
+	<%= f.submit %>
+<% end %>
