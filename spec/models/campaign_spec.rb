@@ -6,8 +6,7 @@ RSpec.describe Campaign, :type => :model do
 	end
 
 	it "validates that the start date is before the end date" do 
-		@campaign = Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today, end_date: Date.today - 1.days)
-		expect(@campaign).to have_errors
+		expect { Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today, end_date: Date.today - 1.days) }.to raise_error
 	end
 
 	it "returns active campaigns" do 

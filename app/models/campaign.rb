@@ -8,4 +8,15 @@ class Campaign < ActiveRecord::Base
 
 	validates_presence_of :name, :budget, :start_date, :end_date, :link, :country, :creative, :advertiser_id
 	validates :in_pause, inclusion: { in: [true, false] }
+
+	validate :start_date_must_be_before_end_date
+
+
+	private
+	def start_date_must_be_before_end_date
+		if end_date < start_date
+			errors.add(:start_date, "can't be after end date")
+			errors.add(:end_date, "can't be before start date")
+		end
+	end
 end
