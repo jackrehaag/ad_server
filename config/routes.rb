@@ -6,4 +6,11 @@ Rails.application.routes.draw do
   	resources :campaigns
   end
   resources :users, except: [:new, :create]
+
+  namespace :api do
+  	get 'campaigns', to: 'campaigns#index'
+	  get 'campaigns/active', to: 'campaigns#active'
+	  get ':country/campaigns/', to: 'campaigns#index'
+	  get ':country/campaigns/active', to: 'campaigns#active'
+  end
 end

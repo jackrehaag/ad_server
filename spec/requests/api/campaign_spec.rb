@@ -5,8 +5,8 @@ RSpec.describe "Campaign API" do
 		@user = Fabricate(:user)
 		@advertiser = Fabricate(:advertiser, user: @user)
 		
-		Fabricate(:campaign, name: 'active campaign in uk', advertiser: @advertiser)
-		Fabricate(:campaign, name: 'paused campaign in uk', advertiser: @advertiser, in_pause: true)
+		Fabricate(:campaign, name: 'active campaign in GB', advertiser: @advertiser)
+		Fabricate(:campaign, name: 'paused campaign in GB', advertiser: @advertiser, in_pause: true)
 
 		Fabricate(:campaign, name: 'active campaign in france', advertiser: @advertiser, country: 'FR')
 		Fabricate(:campaign, name: 'paused campaign in france', advertiser: @advertiser, country: 'FR', in_pause: true)
@@ -16,7 +16,7 @@ RSpec.describe "Campaign API" do
     get '/api/campaigns'
     expect(response).to be_success
     json = JSON.parse(response.body)
-    expect(json['campaigns'].count).to eq(4)
+    expect(json['campaigns'].length).to eq(4)
   end
 
   it "returns all active campaigns" do 
@@ -24,23 +24,23 @@ RSpec.describe "Campaign API" do
     expect(response).to be_success
     json = JSON.parse(response.body)
     expect(json['campaigns'].count).to eq(2)
-    expect(json['campaigns'].collect { |campaign| campaign['name']}).to eq(['active campaign in uk', 'active campaign in france'])
+    expect(json['campaigns'].collect { |campaign| campaign['name']}).to eq(['active campaign in GB', 'active campaign in france'])
   end
 
-  it "returns all uk campaigns" do 
-  	get '/api/UK/campaigns'
+  it "returns all GB campaigns" do 
+  	get '/api/GB/campaigns'
     expect(response).to be_success
     json = JSON.parse(response.body)
     expect(json['campaigns'].count).to eq(2)
-    expect(json['campaigns'].collect { |campaign| campaign['name']}).to eq(['active campaign in uk', 'paused campaign in uk'])
+    expect(json['campaigns'].collect { |campaign| campaign['name']}).to eq(['active campaign in GB', 'paused campaign in GB'])
   end
 
-  it "returns all active uk campaigns" do 
-  	get '/api/UK/campaigns'
+  it "returns all active GB campaigns" do 
+  	get '/api/GB/campaigns/active'
     expect(response).to be_success
     json = JSON.parse(response.body)
     expect(json['campaigns'].count).to eq(1)
-    expect(json['campaigns'].collect { |campaign| campaign['name']}).to eq(['active campaign in uk'])
+    expect(json['campaigns'].collect { |campaign| campaign['name']}).to eq(['active campaign in GB'])
   end
 
 end
