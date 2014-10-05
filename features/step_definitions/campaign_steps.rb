@@ -1,11 +1,15 @@
 Given(/^I fill in the new campaign form$/) do
   fill_in 'campaign_name', with: 'Test Campaign'
   fill_in 'campaign_budget', with: '10000'
-  select '1/1/2015', from: 'campaign_start_date'
-  select '31/12/2015', from: 'campaign_end_date'
+  select "1", from: 'campaign_start_date_3i'
+  select "January", from: 'campaign_start_date_2i'
+  select "2014", from: 'campaign_start_date_1i'
+  select "1", from: 'campaign_end_date_3i'
+  select "January", from: 'campaign_end_date_2i'
+  select "2015", from: 'campaign_end_date_1i'
   fill_in 'campaign_link', with: 'http://rubyonrails.org/'
   find('#campaign_country').find(:xpath, 'option[1]').select_option
-  attach_file('campaign_creative', '/spec/fixtures/images/test-image.jpg')
+  attach_file('campaign_creative', File.join(Rails.root, "spec/fixtures/images/test-image.jpg"))
 end
 
 Then(/^The campaign should be created$/) do

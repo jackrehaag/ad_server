@@ -1,5 +1,7 @@
 Company: <%= @advertiser.company %>
 
+<%= link_to 'Add campaign', new_advertiser_campaign_path(@advertiser), class: 'btn btn-success' %>
+
 <table class="table table-striped">
 	<thead>
 		<tr>
