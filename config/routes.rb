@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: [:new, :create]
-  resources :campaigns, only: :index
+  resources :campaigns, only: [:index, :destroy]
 
   namespace :api do
   	get 'campaigns', to: 'campaigns#index'

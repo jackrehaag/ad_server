@@ -23,3 +23,12 @@ And I have an advertiser
 And I have a campaign
 And I visit the campaigns path
 Then I should see "Test Campaign"
+
+Scenario: Deleting a campaign
+Given I am signed in as an administrator
+And There is a user
+And The user has an advertiser
+And The user has a campaign
+And I visit the campaigns path
+And I click the "Delete" link
+Then There should be 0 campaigns

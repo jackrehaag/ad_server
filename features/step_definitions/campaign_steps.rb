@@ -21,6 +21,14 @@ Given(/^I have a campaign$/) do
   Fabricate(:campaign, advertiser_id: @advertiser.id)
 end
 
+Given(/^The user has a campaign$/) do
+  step 'I have a campaign'
+end
+
 Given(/^I visit the campaigns path$/) do
   visit campaigns_path
+end
+
+Then(/^There should be (\d+) campaigns$/) do |arg1|
+  expect(Campaign.all.count).to eq(arg1.to_i)
 end

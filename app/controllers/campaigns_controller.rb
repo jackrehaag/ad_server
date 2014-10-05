@@ -1,4 +1,7 @@
 class CampaignsController < ApplicationController
+	before_filter :authenticate_user!
+	load_and_authorize_resource
+
 	def new
 		@advertiser = Advertiser.find(params[:advertiser_id])
 		@campaign = @advertiser.campaigns.new
@@ -22,6 +25,15 @@ class CampaignsController < ApplicationController
 		else
 			@campaigns = current_user.campaigns
 		end
+	end
+
+	def destroy
+		if @campaign.destroy
+			flash[:notice] = "Campaign successfully deleted."
+		else
+			flash[:notice] = "There was a problem deleting this campaign."
+		end
+		redirect_to :back
 	end
 
 	protected
