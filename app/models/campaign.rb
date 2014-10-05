@@ -11,7 +11,8 @@ class Campaign < ActiveRecord::Base
 
 	validate :start_date_must_be_before_end_date
 
-	scope :active, -> { where(active?: true) }
+	scope :unpaused, -> { where(in_pause: false) }
+	scope :active, -> { unpaused.where("? BETWEEN start_date AND end_date", Date.today) }
 
 	def active?
 		if Date.today.between?(start_date, end_date) && in_pause === false
