@@ -9,6 +9,7 @@ gem 'devise'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'cancancan'
 gem 'money-rails'
+gem "paperclip", "~> 4.2"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
