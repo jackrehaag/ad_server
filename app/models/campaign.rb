@@ -10,6 +10,7 @@ class Campaign < ActiveRecord::Base
 	validates :in_pause, inclusion: { in: [true, false] }
 
 	validate :start_date_must_be_before_end_date
+	validate :end_date_must_be_in_the_future, on: :create
 
 	scope :unpaused, -> { where(in_pause: false) }
 	scope :active, -> { unpaused.where("? BETWEEN start_date AND end_date", Date.today) }
@@ -27,6 +28,12 @@ class Campaign < ActiveRecord::Base
 		if end_date < start_date
 			errors.add(:start_date, "can't be after end date")
 			errors.add(:end_date, "can't be before start date")
+		end
+	end
+
+	def end_date_must_be_in_the_future
+		if end_date < Date.today
+			errors.add(:end_date, "can't be before today")
 		end
 	end
 end

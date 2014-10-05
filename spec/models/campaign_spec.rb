@@ -9,6 +9,10 @@ RSpec.describe Campaign, :type => :model do
 		expect { Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today, end_date: Date.today - 1.days) }.to raise_error
 	end
 
+  it "validates that the end date has not passed" do 
+    expect { Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today - 2.days, end_date: Date.today - 1.days) }.to raise_error
+  end
+
 	it "returns true for active campaigns" do 
 		@campaign = Fabricate(:campaign, advertiser: @advertiser)
 		expect(@campaign.active?).to eq(true)
@@ -20,12 +24,14 @@ RSpec.describe Campaign, :type => :model do
   end
 
   it "does not include campaigns with a forthcoming start date as active" do 
-  	@campaign = Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today + 1.day)
+  	@campaign = Fabricate(:campaign, advertiser: @advertiser)
+    @campaign.update_attributes(start_date: Date.today + 1.day)
   	expect(@campaign.active?).to eq(false)
   end
 
   it "does not include campaigns with a foregone end date as active" do 
-  	@campaign = Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today - 2.months, end_date: Date.today - 1.months)
+  	@campaign = Fabricate(:campaign, advertiser: @advertiser)
+    @campaign.update_attributes(start_date: Date.today - 2.months, end_date: Date.today - 1.months)
   	expect(@campaign.active?).to eq(false)
   end
 
@@ -40,12 +46,14 @@ RSpec.describe Campaign, :type => :model do
   end
 
   it "does not include upcoming campaigns in the active scope" do 
-    @campaign = Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today + 1.day)
+    @campaign = Fabricate(:campaign, advertiser: @advertiser)
+    @campaign.update_attributes(start_date: Date.today + 1.day)
     expect(Campaign.active).not_to include(@campaign)
   end
 
   it "does not include past campaigns in the active scope" do 
-    @campaign = Fabricate(:campaign, advertiser: @advertiser, start_date: Date.today - 2.months, end_date: Date.today - 1.months)
+    @campaign = Fabricate(:campaign, advertiser: @advertiser)
+    @campaign.update_attributes(start_date: Date.today - 2.months, end_date: Date.today - 1.months)
     expect(Campaign.active).not_to include(@campaign)
   end
 end
